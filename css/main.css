@@ -1,0 +1,198 @@
+@charset "utf-8";
+
+:root {
+  --main-color: #e70017; 
+  --fs: 2rem;
+  --main-font: "pretendard", sans-serif;
+  --black: #000;
+  --white: #fff;
+}
+
+
+/* body */
+body {line-height: 1.5; font-family: "pretendard", sans-serif; font-size: 1.6rem /* = 16px */; color:var(--black);  overflow-x: hidden; }
+/* cho overflow-x: hidden; để đảm bảo cấu trúc page ko tràn trái phải */
+.inner {max-width: 1640px; padding: 0 20px; margin: 0 auto;}
+
+
+
+/* header */
+#header {position: absolute; left: 0; top: 0; width: 100%; padding-top: 20px; z-index: 2;}
+#header .inner {display: flex; justify-content: space-between; align-items: center;}
+
+#header h1 img {width: 200px;}
+
+#header .gnb {display: flex;}
+#header .gnb > li {position: relative;}
+#header .gnb > li > a {display: block; font-size: var(--fs); color: var(--white); padding: 10px 40px;}
+#header .gnb > li .depth2 {position: absolute; background: var(--white); width: 200px; border-radius: 20px; padding: 30px; left: calc(50% - 100px); display: none;}
+#header .gnb > li .depth2 li a {display: block; padding: 5px; transition: all 0.5s;}
+#header .gnb > li .depth2 li a:hover {color: var(--main-color);}
+
+
+
+
+
+
+#header .ham {width: 30px; height: 30px; font-size: 0; background: url(../images/ham.svg) no-repeat ;  cursor: pointer; display: none;}
+
+
+/* mobile menu */
+.mgnb_wrap {position: fixed; left: 100%; top: 0; width: 100%; height: 100%; background: #fff; padding: 80px 20px; }
+/* left: 100% làm cho ra khỏi bên ngoài ở hướng bên phải màn hình dù màn hình có to cỡ nào, nếu cho -100% thì sẽ ra ngoài bên trái màn hình */
+.mgnb_wrap .mgnb {border-top: 2px solid rgba(0,0,0,0.8);}
+.mgnb_wrap .mgnb > li {border-bottom: 1px solid #ccc; font-size: 2.5rem; padding: 20px;}
+.mgnb_wrap .mgnb > li .mdepth2 {padding-left: 20px; font-size: 1.6rem; display: none;}
+.mgnb_wrap .mgnb > li .mdepth2 a {display: block; padding: 3px 0; color: #666;}
+
+.mgnb_wrap .mgnb > li > a {pointer-events: none;} /* xóa link ở a trong menu cấp 1 để khi nhấn vào menu cấp 1 thì k bị chuyển sang trang mới mà hiện ra menu cấp 2 */
+
+.mgnb_wrap .mgnb_close {width: 30px; height: 30px; font-size: 0; background: url(../images/close.png) no-repeat center center; cursor: pointer; position: absolute; right: 20px; top: 30px;}
+
+
+@media (max-width:1024px) {
+  #header .ham {display: block;}
+  #header .gnb {display: none;}
+}
+
+@media (max-width:576px) {
+  #header h1 img {width: 140px;}
+}
+
+
+
+
+/* banner */
+.banner .swiper-slide {position: relative;}
+.banner .banner1 {background: url(../images/banner1.png) no-repeat center center / cover; height: 100vh;} 
+/* 100vh để thành 100% màn hình và khi kéo màn hình thì cũng tự động giảm theo kích cỡ màn hình
+100vh là một đơn vị đo chiều cao dựa trên viewport height (chiều cao của cửa sổ trình duyệt). 1vh tương đương 1% chiều cao của viewport (khu vực hiển thị nội dung trong trình duyệt).100vh có nghĩa là chiều cao của phần tử sẽ bằng 100% chiều cao của viewport.
+*/
+.banner .banner2 {background: url(../images/banner2.jpg) no-repeat center center / cover; height: 100vh;} 
+.banner .banner3 {background: url(../images/banner3.png) no-repeat center center / cover; height: 100vh;} 
+
+.banner .banner_txt {color: #fff; position: absolute; left: 7.8125vw /* =150px đổi thành vw để khi giảm size màn hình thì chữ cũng tự động di chuyển vị trí theo */; bottom: 10.41666vw  /* =200px */;}
+.banner .banner_txt h2 {font-size: 7rem /* =70px */; padding: 0 0 20px; line-height: 1.2;} /* vì font chữ h2 lớn nên thêm giãn cách giảm đi để trông đẹp hơn */
+.banner .banner_txt span {font-size: 3rem /* =30px */;}
+
+.banner .swiper-button-next {color: #fff;}
+.banner .swiper-button-prev {color: #fff;}
+.banner .swiper-pagination {bottom: 5.20833vw /* =100px */; top: auto; height: 2px; width: 90%; left: 50%; transform: translateX(-50%);  opacity: 0.5;} /* vì vốn dĩ đã có top:0 rồi nên phải thêm top: auto; ở đây để mất cái 0 đó đi */
+.banner .swiper-pagination-progressbar-fill {background: #fff;}
+
+@media (max-width:1200px) {
+  .banner .banner_txt h2 {font-size: 5.5rem;} /* thường là giảm 80% */
+  .banner .banner_txt span {font-size: 2.5rem;}
+}
+
+@media (max-width:700px) {
+  .banner .banner_txt h2 {font-size: 4rem;} 
+  .banner .banner_txt span {font-size: 1.5rem;}
+  .banner .swiper-button-next {display: none;}
+  .banner .swiper-button-prev {display: none;}
+  .banner .banner1 {background: url(../images/banner1_mo.png) no-repeat center center / cover;} 
+  .banner .banner2 {background: url(../images/banner2_mo.png) no-repeat center center / cover;} 
+  .banner .banner3 {background: url(../images/banner3_mo.png) no-repeat center center / cover;} 
+  #header h1 img {width: 150px;}
+}
+
+h2 {font-size: 7rem; font-family: "Mont", sans-serif; text-transform: capitalize;}
+.btn_more a {display: inline-block; background: #000; color: #fff; padding: 10px 100px; border-radius: 50px; font-size: 2rem; transition: all 0.5s;}
+.btn_more a:hover {background: var(--main-color);}
+
+@media (max-width: 1200px) {
+  h2 {font-size: 5.5rem;}
+}
+@media (max-width: 576px) {
+  h2 {font-size: 4rem;}
+  .btn_more a {padding: 10px 50px;font-size: 1.6rem;}
+}
+
+
+
+/* menu */
+.menu {margin: 200px 0; text-align: center;}
+.menu .swiper {margin-top: 50px;}
+.menu .swiper-slide {transform: scale(0.8); transition: transform 0.5s;}
+.menu .swiper-slide-active {transform: scale(1);}
+.menu .swiper-slide img {width: 100%;}
+.menu .swiper-slide strong {display: block; font-size: 2.5rem; padding: 10px 0; }
+.menu .swiper-slide span {display: block; color: var(--main-color); font-weight: 700;}
+
+@media (max-width: 1200px) {
+  .menu .swiper-slide strong {font-size: 2rem;}
+}
+
+
+
+/* story */
+.story .inner {display: flex; flex-wrap: wrap-reverse; gap: 5.208vw; align-items: center;}
+.story .story_video {width: 65%;}
+.story .story_video video {width: 100%; border-radius: 20px;}
+.story .story_txt {width: calc(35% - 5.208vw);}
+.story .story_txt p {font-size: 2rem; color: #999; margin-bottom: 20px;}
+@media (max-width: 1400px) {
+  .story .story_video {width: 100%;}
+  .story .story_txt {width: 100%; text-align: center;}
+}
+@media (max-width: 576px) {
+  .story .story_txt p {font-size: 1.7rem;}
+}
+
+
+
+/* event */
+.event {margin: 200px 0;}
+.event .inner {display: flex; position: relative; flex-wrap: wrap;}
+.event .event_txt {width: 400px; position: sticky; top: 50px; height: 200px;} /* giữ txt ở nguyên bên trái khi cuộn bên phải xuống */
+.event .event_txt p {font-size: 2rem; color: #999;}
+.event .event_list {width: calc(100% - 400px); display: flex; gap: 30px;}
+.event .event_list > div {width: calc((100% - 60px) / 3);}
+
+.event .event_list img {width: 100%;}
+.event .event_list .event_item {border: 1px solid #ddd; border-radius: 20px; overflow: hidden; margin-bottom: 30px;}
+.event .event_list .event_item dl {padding: 30px; color: #999;}
+.event .event_list .event_item dl dt {font-size: 2rem; font-weight: 700; color: #000; padding: 0 0 10px;}
+
+.event .btn_more {text-align: center;}
+
+@media (max-width: 1400px) {
+  .event .event_txt {width: 100%; text-align: center; position: static;} /* trở về cơ bản, để phá sticky đã làm trước đó*/
+  .event .event_txt br {display: none;} /* để phần p mà có br thì ko bị br xuống hàng, mà thành 1 hàng */
+  .event .event_list {width: 100%;}
+}
+
+@media (max-width: 1000px) {
+  .event .event_txt {height: auto; padding-bottom: 20px;}
+  .event .event_txt p {font-size: 1.7rem;}
+  .event .event_list > div {width: calc((100% - 30px) / 2);}
+  .event .event_list > div:nth-child(3) {display: none;}
+}
+
+@media (max-width: 576px) {
+  .event .event_list > div {width: 100%;}
+  .event .event_list > div:nth-child(2) {display: none;}
+}
+
+
+/* search */
+.search {background: url(../images/search_bg.png) no-repeat center center / cover; padding: 200px 0; text-align: center; color: #fff;}
+.search .search_box {padding: 5px; overflow: hidden; display: flex; background: #fff; border-radius: 100px; max-width: 800px; margin: 0 auto;} /* ở đây cho margin 0 auto để ô này vào giữa trang, theo .search */
+.search input[type="text"] {height: 60px; width: calc(100% - 60px); padding-left: 30px; font-size: 2rem; font-family: var(--main-font);} 
+.search input[type="submit"] {font-size: 0; cursor: pointer; height: 60px; width: 60px; background: #000 url(../images/btn_search.png) no-repeat center center; border-radius: 50%; } 
+
+@media (max-width: 1000px) {
+  .search {padding: 100px 0;}
+}
+
+
+/* footer */
+#footer {background: #000; padding: 100px 0; color: #fff;}
+#footer .inner {flex-wrap: wrap; display: flex; justify-content: space-between; gap: 20px;}
+#footer .footer_link {display: flex; gap: 10px 20px; flex-wrap: wrap;}
+#footer .footer_sns {display: flex; gap: 20px; flex-wrap: wrap;}
+#footer address {padding: 20px 0; opacity: 0.5;}
+
+@media (max-width: 768px) {
+  #footer {font-size: 1.4rem; padding: 50px 0;}
+}
